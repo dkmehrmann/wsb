@@ -22,14 +22,18 @@ class SymbolFinder:
         return Counter(s).most_common()[0][0]
 
     @staticmethod
-    def clean_tokens(tokens):
-        return [x.strip('$') for x in tokens]
+    def clean_token(t):
+        t = "".join(ch for ch in t if ch.isalpha())
+        return t
+
+    def clean_tokens(self, tokens):
+        return [self.clean_token(x) for x in tokens]
 
     def check_symbol(self, s):
         if self.dollar_sign and (s[0] != '$'):
             return False
-        s = s.strip('$')
-        if (s == s.upper()) and (len(s) < 5) and not (s.isdigit()):
+        s = self.clean_token(s)
+        if (s == s.upper()) and (s != 'I'):
             return True
         return False
 
