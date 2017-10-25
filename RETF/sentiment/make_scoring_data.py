@@ -34,11 +34,11 @@ if __name__ == '__main__':
     
     df = pd.DataFrame([format_labeling_data(x) for x in submissions], columns=['date', 'text', 'ticker', 'score'])
     
-    df['scorer'] = np.random.choice(['Andrew','Joe','Casey'], len(df))
-    
     df = df.loc[df.ticker.notnull()]
     
     df = df.sample(total_N)
+    
+    df['scorer'] = np.random.choice(['Andrew','Joe','Casey'], len(df))
     
     for person in ['Andrew', 'Joe', 'Casey']:
         df[df.scorer == person].to_csv(fname.format(subreddit, start_date, end_date, dollar_sign, person))
