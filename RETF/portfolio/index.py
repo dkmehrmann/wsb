@@ -12,8 +12,11 @@ from .get_stats import Post
 from ..reddit_scraper.scrape import SubScraper
 
 
-def make_ticker_list(filters = []):
-    raw = list(pd.read_csv('data/nyse.csv').Symbol) + list(pd.read_csv('data/nasdaq.csv').Symbol)
+def make_ticker_list(files = ['data/nyse.csv', 'data/nasdaq.csv'], filters = []):
+    raw = []
+    for f in files:
+        raw += list(pd.read_csv(f).Symbol)
+    # raw = list(pd.read_csv('data/nyse.csv').Symbol) + list(pd.read_csv('data/nasdaq.csv').Symbol)
     without_bs = [x.strip() for x in raw if '^' not in x]
     return [x for x in without_bs if x not in filters]
 

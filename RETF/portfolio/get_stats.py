@@ -37,7 +37,7 @@ class Post:
         self.create_text()
 
     def create_text(self):
-        self.text = self.submission.title + self.submission.selftext
+        self.text = self.submission.title + " " + self.submission.selftext
 
     def calculate_ticker(self, ticker_list, dollar_sign=False):
         finder = SymbolFinder(ticker_list, dollar_sign)
