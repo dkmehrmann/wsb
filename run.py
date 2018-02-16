@@ -28,7 +28,9 @@ pc = portfolio_constructor(subr, cp, cutoff=cutoff)
 d0 = str_to_dt(start_date)
 d1 = str_to_dt(end_date)
 
+# if we made this only depend on the current day
 pdict = pc.get_portfolio_dict(d0, d1, lookback)
+pdict_ = pc.get_portfolio(d1, lookback)
 tlist = pc.get_ticker_list(pdict)
 
 print(tlist)
